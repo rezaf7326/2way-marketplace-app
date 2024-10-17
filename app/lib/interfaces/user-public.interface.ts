@@ -5,5 +5,5 @@ export interface UserPublic {
   firstName: string;
   lastName: string;
   email: string;
-  roles: Array<Role>;
+  role: Role;
 }
