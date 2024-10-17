@@ -1,31 +1,22 @@
 'use client';
 import {
-  AlertDialog,
   Badge,
-  Button,
   Code,
   DataList,
   Flex,
   Grid,
   IconButton,
-  Strong,
-  Text,
 } from '@radix-ui/themes';
-import Cookies from 'js-cookie';
-import { toast } from 'react-toastify';
+import React from 'react';
 import { useAuth } from '@/app/AuthProvider';
 import { CopyIcon } from '@radix-ui/react-icons';
-import React, { useEffect, useState } from 'react';
-import AccentText from '@/app/components/AccentText';
-import { FetchRequestFactory } from '@/app/lib/fetch';
 import { UserStatus } from '@/app/lib/enums';
 import SignInRequired from '@/app/components/error/SignInRequired';
 import SendConfirmEmailButton from '@/app/users/profile/SendConfirmEmailButton';
-import { fetchUserInfo } from '@/app/lib/helpers/fetch-user-info';
 import PageLoader from '@/app/components/PageLoader';
 
 export default function UserProfile() {
-  const { user, setUser, authLoading } = useAuth();
+  const { user, authLoading } = useAuth();
 
   const status: {
     color: 'blue' | 'jade' | 'ruby' | 'gray';
@@ -46,6 +37,8 @@ export default function UserProfile() {
     status.color = 'ruby';
     status.label = 'Suspended';
   }
+
+  console.log(user); // TODO REMOVE
 
   return user ? (
     <Grid
@@ -97,11 +90,9 @@ export default function UserProfile() {
             <DataList.Label minWidth="88px">Accessibility</DataList.Label>
             <DataList.Value>
               <Flex gap="2" align="center">
-                {user.roles.map((role) => (
-                  <Badge variant="outline" radius="full" key={role}>
-                    {role}
-                  </Badge>
-                ))}
+                <Badge variant="outline" radius="full">
+                  {user.role}
+                </Badge>
               </Flex>
             </DataList.Value>
           </DataList.Item>

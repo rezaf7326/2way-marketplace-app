@@ -12,15 +12,14 @@ import {
   DropdownMenu,
   Separator,
   Grid,
-  TextField,
   Strong,
 } from '@radix-ui/themes';
 import { usePathname, useRouter } from 'next/navigation';
 import { FetchRequestFactory } from '@/app/lib/fetch';
 import { useAuth } from '@/app/AuthProvider';
 import AccentText from '@/app/components/AccentText';
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { BarLoader } from 'react-spinners';
+import { Role } from './lib/enums';
 
 export default function NavBar() {
   const router = useRouter();
@@ -78,8 +77,30 @@ export default function NavBar() {
           justify="center"
           className={'h-24 lg:h-12'}
         >
-          <Flex align="center" justify={{ initial: 'center', md: 'start' }}>
+          <Flex
+            align="center"
+            justify={{ initial: 'center', md: 'start' }}
+            gap="5"
+          >
             {linkList([{ href: '/products', label: 'Products', dark: true }])}
+            {user &&
+              (user.role === Role.Approver || user.role === Role.Seller) &&
+              linkList([
+                {
+                  href: '/listings',
+                  label: 'Listings',
+                  dark: true,
+                },
+              ])}
+            {user &&
+              (user.role === Role.Buyer || user.role === Role.Seller) &&
+              linkList([
+                {
+                  href: '/orders',
+                  label: 'Orders',
+                  dark: true,
+                },
+              ])}
           </Flex>
           <Flex align="center" justify={{ initial: 'center', md: 'end' }}>
             <BarLoader
@@ -120,12 +141,6 @@ export default function NavBar() {
                       {linkLI({
                         href: `/users/profile`,
                         label: 'My Profile',
-                      })}
-                    </Box>
-                    <Box onClick={() => setMenuOpen(false)}>
-                      {linkLI({
-                        href: '/detail-sets',
-                        label: 'My Projects',
                       })}
                     </Box>
                     <Separator size="4" />
