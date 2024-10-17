@@ -106,7 +106,7 @@ export default function NavBar() {
             <BarLoader
               width={130}
               height={2}
-              color="#d63636"
+              color="#3366ff"
               className="pr-5"
               speedMultiplier={2}
               loading={authLoading}

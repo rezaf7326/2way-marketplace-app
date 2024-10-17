@@ -99,7 +99,7 @@ export default function Pagination({
         className="mr-1"
         size={{ initial: '2', sm: '3' }}
       >
-        Page {metadata?.currPage} of {metadata?.totalPages} Pages
+        Page {metadata?.currPage || 0} of {metadata?.totalPages || 0} Pages
       </Text>
       <Flex gapX="3" align="center" justify="center">
         <Button type="button" variant="ghost" onClick={prevPage}>

@@ -4,7 +4,7 @@ import { BeatLoader } from 'react-spinners';
 export default function PageLoader({ loading }: { loading?: boolean }) {
   return (
     <BeatLoader
-      color="#d66767"
+      color="#6699ff"
       style={{
         height: '280px',
         display: 'flex',

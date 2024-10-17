@@ -1,7 +1,6 @@
 import { Grid } from '@radix-ui/themes';
-import ProductsTable from './products-table';
 
-export default function Products() {
+export default function Listing() {
   return (
     <Grid
       columns={{ initial: '1', md: '95%', lg: '65%' }}
@@ -9,7 +8,7 @@ export default function Products() {
       justify="center"
       className="pt-3"
     >
-      <ProductsTable />
+      Listings
     </Grid>
   );
 }
